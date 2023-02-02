@@ -34,26 +34,47 @@
             console.log(data)
             document.getElementById("movies").innerHTML = renderMovies(data);
 
+
+            $(`.btn`).click(function () {
+
+                let value=$(this).attr('data-id');
+                console.log(value)
+
+                const url = `https://tender-soft-bayberry.glitch.me/movies/${value}`;
+                const options = {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                };
+                fetch(url, options)
+                    .then(response => console.log(response)) /* review was created successfully */
+                    .catch(error => console.error(error));
+
+            })
+
+            $(".btn").click(function () {
+
+                let value=$(this).attr('data-id');
+                console.log(value)
+
+                const url = `https://tender-soft-bayberry.glitch.me/movies/${value}`;
+                const options = {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                };
+                fetch(url, options)
+                    .then(response => console.log(response)) /* review was created successfully */
+                    .catch(error => console.error(error));
+
+
+            })
         })
 
 
-    $('btn').click(function (8) {
-
-        function deleteMovie(id) {
-            const url = `https://tender-soft-bayberry.glitch.me/movies/${id}`;
-            const options = {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            };
-            fetch(url, options)
-                .then(response => console.log(response)) /* review was created successfully */
-                .catch(error => console.error(error));
-
-         }
-    })
-    function renderMovies(data) {
+     function renderMovies(data) {
         let html = ''
         for (let i = 0; i < data.length; i++) {
             html += '<div class="card">'
@@ -61,13 +82,16 @@
             html += '<li>Title: ' + data[i].title + '</li>';
             html += '<li>Rating: ' + data[i].rating + '</li>';
             html += '</ul>';
-            html += `<a href="#" id="${data[i].id}" class="btn btn-primary">Update</a>\n<a href="#" id="${data[i].id}" class="btn btn-danger">Delete</a>\n`
+            html += `<a data-id="${data[i].id}" class="btn btn-primary">Update</a><a href="#" data-id="${data[i].id}" class="btn btn-danger">Delete</a>\n`
             html += '</div>'
         }
 
         return html;
 
     }
+
+
+
 
 
 })();
