@@ -33,9 +33,10 @@
         .then(function (data) {
             console.log(data)
             document.getElementById("movies").innerHTML = renderMovies(data);
+            document.getElementById("moviesListDD").innerHTML = renderMoviesList(data);
 
 
-            $(`.btn`).click(function () {
+            $(`.delete-btn`).click(function () {
 
                 let value=$(this).attr('data-id');
                 console.log(value)
@@ -55,15 +56,19 @@
 
             $("#upBtn").click(function () {
 
+                let value=$("#moviesList option:selected").attr('data-id');
+                console.log(value)
+
 
                 let updatedMovie = {
-                    title: $('#updatedTitle').val(),
-                    rating: $('#updatedRating').val()
+
+                    title: $('#exampleFormControlInput1').val(),
+                    rating: $('#exampleFormControlInput2').val()
                 }
+                console.log(updatedMovie)
 
 
-
-                const url = `https://tender-soft-bayberry.glitch.me/movies/`;
+                const url = `https://tender-soft-bayberry.glitch.me/movies/${value}`;
                 const options = {
                     method: 'PATCH',
                     headers: {
@@ -89,11 +94,27 @@
             html += '<li>Title: ' + data[i].title + '</li>';
             html += '<li>Rating: ' + data[i].rating + '</li>';
             html += '</ul>';
-            html += `<a href="#" data-id="${data[i].id}" class="btn btn-danger">Delete</a>\n`
+            html += `<a href="#" data-id="${data[i].id}" class="delete-btn btn btn-danger">Delete</a>\n`
             html += '</div>'
         }
 
         return html;
+
+    }
+
+    function renderMoviesList(data){
+
+        console.log(data)
+
+        let html = '<select id="moviesList" class="form-select">'
+        for (let i = 0; i < data.length; i++) {
+            html += `<option value="1" data-id="${data[i].id}">${data[i].title}</option>`;
+        }
+        html += '</select>'
+
+
+        return html;
+
 
     }
 
