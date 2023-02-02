@@ -55,15 +55,22 @@
 
             $(".btn").click(function () {
 
-                let value=$(this).attr('data-id');
-                console.log(value)
 
-                const url = `https://tender-soft-bayberry.glitch.me/movies/${value}`;
+                let updatedMovie = {
+                    title: $('#updatedTitle').val(),
+                    rating: $('#updatedRating').val()
+                }
+
+
+
+                const url = `https://tender-soft-bayberry.glitch.me/movies/`;
                 const options = {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
                     },
+
+                    body: JSON.stringify(updatedMovie),
                 };
                 fetch(url, options)
                     .then(response => console.log(response)) /* review was created successfully */
@@ -82,7 +89,7 @@
             html += '<li>Title: ' + data[i].title + '</li>';
             html += '<li>Rating: ' + data[i].rating + '</li>';
             html += '</ul>';
-            html += `<a data-id="${data[i].id}" class="btn btn-primary">Update</a><a href="#" data-id="${data[i].id}" class="btn btn-danger">Delete</a>\n`
+            html += `<a href="#" data-id="${data[i].id}" class="btn btn-danger">Delete</a>\n`
             html += '</div>'
         }
 
