@@ -53,7 +53,7 @@
 
             })
 
-            $(".btn").click(function () {
+            $("#upBtn").click(function () {
 
 
                 let updatedMovie = {
