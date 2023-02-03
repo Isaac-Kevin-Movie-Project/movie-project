@@ -27,18 +27,18 @@ body .container {
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
-    margin: 40px 0;
+    margin: 20px 0;
 }
 
 body .container .card {
     position: relative;
-    min-width: 160px;
-    height: 220px;
+    min-width: 180px;
+    height: 240px;
     box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
     inset -5px -5px 15px rgba(255, 255, 255, 0.1),
     5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    margin: 30px;
+    margin: 15px;
     transition: 0.5s;
 }
 
@@ -56,10 +56,10 @@ body .container .card:nth-child(3) .box .content a {
 
 body .container .card .box {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
     background: #2a2b2f;
     border-radius: 15px;
     display: flex;
