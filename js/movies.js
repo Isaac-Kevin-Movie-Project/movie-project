@@ -59,6 +59,36 @@
 
             })
 
+            $('#sortRating').click(function () {
+
+                movieData = movieData.sort(
+                    (p1, p2) => (p1.rating < p2.rating) ? 1 : (p1.rating > p2.rating) ? -1 : 0);
+
+                console.log(movieData)
+
+                document.getElementById("movies").innerHTML = renderMovies(movieData);
+                document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
+
+                setTimeout(function(){
+                }, 1000);
+
+            })
+
+            $('#sortGenre').click(function () {
+
+                movieData = movieData.sort(
+                    (p1, p2) => (p1.genre > p2.genre) ? 1 : (p1.genre < p2.genre) ? -1 : 0);
+
+                console.log(movieData)
+
+                document.getElementById("movies").innerHTML = renderMovies(movieData);
+                document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
+
+                setTimeout(function(){
+                }, 1000);
+
+            })
+
             $("#moviesList").change(function(movieData){
                 let value=$("#moviesList option:selected").attr('data-id');
                 $("#exampleFormControlInput1").val(`${data[value-1].title}`);
