@@ -31,15 +31,20 @@
     fetch('https://tender-soft-bayberry.glitch.me/movies/')
         .then(response => response.json())
         .then(function (data) {
-            console.log(data)
-            document.getElementById("movies").innerHTML = renderMovies(data);
-            document.getElementById("moviesListDD").innerHTML = renderMoviesList(data);
+            let movieData = data;
+            document.getElementById("movies").innerHTML = renderMovies(movieData);
+            document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
 
+
+            $("#moviesList").change(function(movieData){
+                let value=$("#moviesList option:selected").attr('data-id');
+                $("#exampleFormControlInput1").val(`${data[value-1].title}`);
+                $("#exampleFormControlInput2").val(`${data[value-1].rating}`);
+            });
 
             $(`.delete-btn`).click(function () {
 
                 let value=$(this).attr('data-id');
-                console.log(value)
 
                 const url = `https://tender-soft-bayberry.glitch.me/movies/${value}`;
                 const options = {
@@ -57,7 +62,6 @@
             $("#upBtn").click(function () {
 
                 let value=$("#moviesList option:selected").attr('data-id');
-                console.log(value)
 
 
                 let updatedMovie = {
@@ -65,7 +69,6 @@
                     title: $('#exampleFormControlInput1').val(),
                     rating: $('#exampleFormControlInput2').val()
                 }
-                console.log(updatedMovie)
 
 
                 const url = `https://tender-soft-bayberry.glitch.me/movies/${value}`;
@@ -103,8 +106,6 @@
     }
 
     function renderMoviesList(data){
-
-        console.log(data)
 
         let html = '<select id="moviesList" class="form-select">'
         for (let i = 0; i < data.length; i++) {
