@@ -175,8 +175,8 @@
             html += '<div class="content">'
             html += '<h2>' + data[i].id + '</h2>'
             html += '<h3>' + data[i].title + '</h3>'
-            html += '<p> Rating: ' + data[i].rating + '</p>'
             html += '<p> Genre: ' + data[i].genre + '</p>'
+            html += '<p> Rating: ' + data[i].rating + '</p>'
             html += `<a href="#" data-id="${data[i].id}" id="dltBtn" class="delete-btn btn btn-danger mx-auto mt-auto m-3">Delete</a>\n`
             html += '</div>'
             html += '</div>'
