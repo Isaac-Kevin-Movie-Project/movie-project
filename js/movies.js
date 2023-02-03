@@ -112,6 +112,7 @@
             html += `<option value="1" data-id="${data[i].id}">${data[i].title}</option>`;
         }
         html += '</select>'
+        
 
 
         return html;
