@@ -44,7 +44,20 @@
             document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
             $('#loading').addClass('hidden')
 
+            $('#sortTitle').click(function () {
 
+                movieData = movieData.sort(
+                    (p1, p2) => (p1.title > p2.title) ? 1 : (p1.title < p2.title) ? -1 : 0);
+
+                console.log(movieData)
+
+                document.getElementById("movies").innerHTML = renderMovies(movieData);
+                document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
+
+                setTimeout(function(){
+                }, 1000);
+
+            })
 
             $("#moviesList").change(function(movieData){
                 let value=$("#moviesList option:selected").attr('data-id');
