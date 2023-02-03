@@ -5,7 +5,7 @@
 
             let newTitle = $("#titleInput").val()
             let newGenre = $("#genreInput").val()
-            let newRating = $("#ratingInput").val()
+            let newRating = parseInt($("#ratingInput").val())
 
 
             const newMovie = {
@@ -44,15 +44,14 @@
             document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
             $('#loading').addClass('hidden')
 
+
             $('#sortTitle').click(function () {
 
-                movieData = movieData.sort(
-                    (p1, p2) => (p1.title > p2.title) ? 1 : (p1.title < p2.title) ? -1 : 0);
+                movieDataSorted = movieData.sort(
+                    (p1, p2) => (p1.title.toLowerCase() > p2.title.toLowerCase()) ? 1 : (p1.title.toLowerCase() < p2.title.toLowerCase()) ? -1 : 0);
 
-                console.log(movieData)
-
-                document.getElementById("movies").innerHTML = renderMovies(movieData);
-                document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
+                document.getElementById("movies").innerHTML = renderMovies(movieDataSorted);
+                document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieDataSorted);
 
                 setTimeout(function(){
                 }, 1000);
@@ -61,13 +60,11 @@
 
             $('#sortRating').click(function () {
 
-                movieData = movieData.sort(
+                movieDataSorted = movieData.sort(
                     (p1, p2) => (p1.rating < p2.rating) ? 1 : (p1.rating > p2.rating) ? -1 : 0);
 
-                console.log(movieData)
-
-                document.getElementById("movies").innerHTML = renderMovies(movieData);
-                document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
+                document.getElementById("movies").innerHTML = renderMovies(movieDataSorted);
+                document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieDataSorted);
 
                 setTimeout(function(){
                 }, 1000);
@@ -76,25 +73,17 @@
 
             $('#sortGenre').click(function () {
 
-                movieData = movieData.sort(
-                    (p1, p2) => (p1.genre > p2.genre) ? 1 : (p1.genre < p2.genre) ? -1 : 0);
+                movieDataSorted = movieData.sort(
+                    (p1, p2) => (p1.genre.toLowerCase() > p2.genre.toLowerCase()) ? 1 : (p1.genre.toLowerCase() < p2.genre.toLowerCase()) ? -1 : 0);
 
-                console.log(movieData)
-
-                document.getElementById("movies").innerHTML = renderMovies(movieData);
-                document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
+                document.getElementById("movies").innerHTML = renderMovies(movieDataSorted);
+                document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieDataSorted);
 
                 setTimeout(function(){
                 }, 1000);
 
             })
 
-            $("#moviesList").change(function(movieData){
-                let value=$("#moviesList option:selected").attr('data-id');
-                $("#exampleFormControlInput1").val(`${data[value-1].title}`);
-                $("#exampleFormControlInput3").val(`${data[value-1].genre}`);
-                $("#exampleFormControlInput2").val(`${data[value-1].rating}`);
-            });
 
             $(`.delete-btn`).click(function () {
 
@@ -120,6 +109,17 @@
 
             })
 
+
+            $("#moviesList").change(function(){
+                let value=$("#moviesList option:selected").attr('data-id');
+                let index = movieData.findIndex(x => x.id == value);
+                console.log(value)
+                console.log(index)
+                $("#exampleFormControlInput1").val(`${movieData[index].title}`);
+                $("#exampleFormControlInput2").val(`${movieData[index].genre}`);
+                parseInt($("#exampleFormControlInput3").val(`${movieData[index].rating}`));
+            });
+
             $("#upBtn").click(function () {
 
                 let value=$("#moviesList option:selected").attr('data-id');
@@ -129,7 +129,7 @@
 
                     title: $('#exampleFormControlInput1').val(),
                     genre: $('#exampleFormControlInput2').val(),
-                    rating: $('#exampleFormControlInput3').val()
+                    rating: parseInt($('#exampleFormControlInput3').val())
                 }
 
 
@@ -169,7 +169,7 @@
             // html += `<a href="#" data-id="${data[i].id}" id="dltBtn" class="delete-btn btn btn-danger mx-auto mt-auto m-3">Delete</a>\n`
             // html += '</div>'
 
-            html += '<div class="container">'
+            html += '<div class="container d-flex">'
             html += '<div class="card">'
             html += '<div class="box">'
             html += '<div class="content">'
