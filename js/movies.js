@@ -4,11 +4,13 @@
     $("#addBtn").click(function () {
 
             let newTitle = $("#titleInput").val()
+            let newGenre = $("#genreInput").val()
             let newRating = $("#ratingInput").val()
 
 
             const newMovie = {
                 title: newTitle,
+                genre: newGenre,
                 rating: newRating
             }
             const url = 'https://tender-soft-bayberry.glitch.me/movies/';
@@ -41,6 +43,7 @@
             $("#moviesList").change(function(movieData){
                 let value=$("#moviesList option:selected").attr('data-id');
                 $("#exampleFormControlInput1").val(`${data[value-1].title}`);
+                $("#exampleFormControlInput3").val(`${data[value-1].genre}`);
                 $("#exampleFormControlInput2").val(`${data[value-1].rating}`);
             });
 
@@ -70,7 +73,8 @@
                 let updatedMovie = {
 
                     title: $('#exampleFormControlInput1').val(),
-                    rating: $('#exampleFormControlInput2').val()
+                    genre: $('#exampleFormControlInput2').val(),
+                    rating: $('#exampleFormControlInput3').val()
                 }
 
 
@@ -98,6 +102,7 @@
             html += '<div class="card col-3" style="width: 16rem; height: 10rem;">'
             html += '<ul>';
             html += '<li>Title: ' + data[i].title + '</li>';
+            html += '<li>Genre: ' + data[i].genre + '</li>';
             html += '<li>Rating: ' + data[i].rating + '</li>';
             html += '</ul>';
             html += `<a href="#" data-id="${data[i].id}" class="delete-btn btn btn-danger mx-auto mt-auto m-3">Delete</a>\n`
