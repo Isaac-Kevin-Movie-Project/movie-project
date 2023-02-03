@@ -44,6 +44,21 @@
             document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
             $('#loading').addClass('hidden')
 
+            let searchInput = document.getElementById('searchInput')
+            searchInput.addEventListener("keyup", searchBar);
+            function searchBar() {
+                let filteredMovies = []
+                let movieName = searchInput.value.toLowerCase()
+                movieData.forEach(function (movie) {
+                    if (movie.title.toLowerCase().includes(movieName)) {
+                        filteredMovies.push(movie)
+                    } else if (movie.genre.toLowerCase().includes(movieName)) {
+                        filteredMovies.push(movie)
+                    }
+                    document.getElementById("movies").innerHTML = renderMovies(filteredMovies);
+                    document.getElementById("moviesListDD").innerHTML = renderMoviesList(filteredMovies);
+                })
+            }
 
             $('#sortTitle').click(function () {
 
@@ -155,6 +170,7 @@
 
             })
         })
+
 
 
      function renderMovies(data) {
