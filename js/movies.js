@@ -23,7 +23,13 @@
             };
             fetch(url, options)
                 .then(response => console.log(response)) /* review was created successfully */
-                .catch(error => console.error(error)); /* handle errors */
+                .catch(error => console.error(error)) /* handle errors */
+                .finally(function (){
+                    $(`#addBtn`).addClass('disabled')
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1000);
+                })
     })
 
 
@@ -61,6 +67,12 @@
                 fetch(url, options)
                     .then(response => console.log(response)) /* review was created successfully */
                     .catch(error => console.error(error))
+                    .finally(function (){
+                        $(`.delete-btn`).addClass('disabled')
+                        setTimeout(function(){
+                            window.location.reload();
+                        }, 1000);
+                    })
 
 
             })
@@ -89,7 +101,13 @@
                 };
                 fetch(url, options)
                     .then(response => console.log(response)) /* review was created successfully */
-                    .catch(error => console.error(error));
+                    .catch(error => console.error(error))
+                    .finally(function (){
+                        $(`#upBtn`).addClass('disabled')
+                        setTimeout(function(){
+                            window.location.reload();
+                         }, 1000);
+                    })
 
 
             })
@@ -105,7 +123,7 @@
             html += '<li>Genre: ' + data[i].genre + '</li>';
             html += '<li>Rating: ' + data[i].rating + '</li>';
             html += '</ul>';
-            html += `<a href="#" data-id="${data[i].id}" class="delete-btn btn btn-danger mx-auto mt-auto m-3">Delete</a>\n`
+            html += `<a href="#" data-id="${data[i].id}" id="dltBtn" class="delete-btn btn btn-danger mx-auto mt-auto m-3">Delete</a>\n`
             html += '</div>'
         }
 
