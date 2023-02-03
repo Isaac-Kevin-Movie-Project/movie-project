@@ -34,6 +34,8 @@
             let movieData = data;
             document.getElementById("movies").innerHTML = renderMovies(movieData);
             document.getElementById("moviesListDD").innerHTML = renderMoviesList(movieData);
+            $('#loading').addClass('hidden')
+
 
 
             $("#moviesList").change(function(movieData){
@@ -55,7 +57,8 @@
                 };
                 fetch(url, options)
                     .then(response => console.log(response)) /* review was created successfully */
-                    .catch(error => console.error(error));
+                    .catch(error => console.error(error))
+
 
             })
 
@@ -92,12 +95,12 @@
      function renderMovies(data) {
         let html = ''
         for (let i = 0; i < data.length; i++) {
-            html += '<div class="card">'
+            html += '<div class="card col-3" style="width: 16rem; height: 10rem;">'
             html += '<ul>';
             html += '<li>Title: ' + data[i].title + '</li>';
             html += '<li>Rating: ' + data[i].rating + '</li>';
             html += '</ul>';
-            html += `<a href="#" data-id="${data[i].id}" class="delete-btn btn btn-danger">Delete</a>\n`
+            html += `<a href="#" data-id="${data[i].id}" class="delete-btn btn btn-danger mx-auto mt-auto m-3">Delete</a>\n`
             html += '</div>'
         }
 
