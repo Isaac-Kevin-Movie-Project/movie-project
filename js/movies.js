@@ -171,7 +171,17 @@
             })
         })
 
+    fetch('https://api.quotable.io/random')
+        .then(response => response.json())
+        .then(function (data) {
+            console.log(data.content)
+            document.getElementById("quote").innerHTML = renderQuote(data);
+        })
 
+    function renderQuote(data) {
+        let html = `<span><i>${data.content}</i> - ${data.author}</span>`;
+        return html;
+    }
 
      function renderMovies(data) {
         let html = ''
