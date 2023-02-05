@@ -179,7 +179,7 @@
         })
 
     function renderQuote(data) {
-        let html = `<span><i>${data.content}</i> - ${data.author}</span>`;
+        let html = `<span><i>"${data.content}"</i> - ${data.author}</span>`;
         return html;
     }
 
