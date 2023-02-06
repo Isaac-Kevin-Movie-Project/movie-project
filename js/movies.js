@@ -198,7 +198,7 @@
             // html += `<a href="#" data-id="${data[i].id}" id="dltBtn" class="delete-btn btn btn-danger mx-auto mt-auto m-3">Delete</a>\n`
             // html += '</div>'
 
-            html += '<div class="container d-flex">'
+            html += '<div class="container">'
             if (start === 1) {
                 html += '<div>'
             }
