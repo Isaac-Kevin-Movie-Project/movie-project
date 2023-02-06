@@ -185,7 +185,10 @@
 
      function renderMovies(data) {
         let html = ''
+         let start = 0;
         for (let i = 0; i < data.length; i++) {
+            start += 1;
+            console.log(start)
             // html += '<div class="card col-3" style="width: 16rem; height: 10rem;">'
             // html += '<ul>';
             // html += '<li>Title: ' + data[i].title + '</li>';
@@ -196,6 +199,9 @@
             // html += '</div>'
 
             html += '<div class="container d-flex">'
+            if (start === 1) {
+                html += '<div>'
+            };
             html += '<div class="card">'
             html += '<div class="box">'
             html += '<div class="content">'
@@ -206,6 +212,11 @@
             html += `<a href="#" data-id="${data[i].id}" id="dltBtn" class="delete-btn btn btn-danger mx-auto mt-auto m-3">Delete</a>\n`
             html += '</div>'
             html += '</div>'
+            html += '</div>'
+            if (start === 5) {
+                html += '</div>';
+                start = 0;
+            };
             html += '</div>'
         }
 
