@@ -24,7 +24,10 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     min-height: 50vh;
-    background: #232427;
+    background-image: url("../img/popcorn.jpg");
+    background-size: cover;
+    background-position: center;
+    /*background: #232427;*/
 }
 
 body .container {

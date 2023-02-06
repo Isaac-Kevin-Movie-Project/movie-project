@@ -209,7 +209,7 @@
             html += '<h3>' + data[i].title + '</h3>'
             html += '<p> Genre: ' + data[i].genre + '</p>'
             html += '<p> Rating: ' + data[i].rating + '</p>'
-            html += `<a href="#" data-id="${data[i].id}" id="dltBtn" class="delete-btn btn btn-danger mx-auto mt-auto m-3">Delete</a>\n`
+            html += `<a href="#" data-id="${data[i].id}" id="dltBtn" class="delete-btn btn-danger mx-auto mt-auto m-3">Delete</a>\n`
             html += '</div>'
             html += '</div>'
             html += '</div>'
